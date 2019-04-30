@@ -1,3 +1,4 @@
 main.o
 avl.o
 avl.out
+*.swp
