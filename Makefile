@@ -23,4 +23,4 @@ avl.o: avl.cpp
 test:
 
 clean:
-	rm -rf $(exe) $(obj)
+	@rm -rf $(exe) $(obj)

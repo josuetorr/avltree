@@ -1,5 +1,7 @@
 /**
  *  Simple implementation of an AVL tree.
+ *  The equilibrium factor is calculated by substracting the right height from the left
+ *  EQ = H_r - H_l
  *
  *  created: 30/04/2019
  *  @author: Josue Torres
@@ -49,6 +51,11 @@ class avltree
 		};
 
 		node* _root;
+
+		/**
+		 * Return max between n and m
+		 */	
+		int max(const int& n, const int& m) const;
 
 		/**
 		 * Insert the k, v pair in the node. This function is used
@@ -101,7 +108,12 @@ class avltree
 		 *
 		 * @return The value of the element associated with the given key
 		 */
-		T& getValue(node* node, const K& key) const;
+		V& getValue(node* node, const K& key) const;
+
+		/**
+		 * Empty the entire tree structure
+		 */
+		void empty();
 
 	public:
 		avltree();
@@ -111,7 +123,7 @@ class avltree
 		void insert(const K& key, const V& value);
 		void remove(const K& key);
 		void contains(const K& key) const;
-		T& getValue(const K& key);
+		V& getValue(const K& key);
 };
 
 #endif

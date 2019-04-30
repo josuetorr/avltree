@@ -1,0 +1,7 @@
+* k,v = key, value pair
+
+1) insert a k,v
+2) remove a k,v
+3) check if the tree contains a k,v
+4) get a v from a k (will start with a get() function, but might change it to the [] operator)
+4) copy one tree's content to an other (copy construtor using the = operator)
