@@ -42,7 +42,17 @@ class avltree
 			 *
 			 * @return height of this node
 			 */
-			int height() const;
+			int height() const
+			{
+				if (_left == nullptr && _right == nullptr)
+					return 0;			
+				else if (_left == nullptr)
+					return _right -> height();
+				else if (_right == nullptr)
+					return _left -> height();
+				else
+					return max(_left -> height(), _right -> height()) + 1;
+			}
 
 			/**
 			 * Get the equilibrium factor for this node
@@ -53,12 +63,17 @@ class avltree
 			 * If the absolute value of EQ, |EQ|, is greater than one.
 			 * We rebalance the tree.
 			 */
-			int eqFactor() const;
-
+			int eqFactor() const
+			{
+				return _right -> height() - _left -> height();	
+			}
 			/**
 			 * A node is a leaf if both _left and _right are null
 			 */
-			bool isLeaf() const;
+			bool isLeaf() const
+			{
+				return _left == nullptr && _right == nullptr;
+			}
 
 			K _key;
 			V _value;
@@ -136,7 +151,7 @@ class avltree
 		 */
 		void empty(Node*& node);
 
-		void print(const Node*& node) const;
+		void print(Node*& node) ;
 
 	public:
 		avltree();
@@ -148,7 +163,7 @@ class avltree
 		void contains(const K& key) const;
 		V& getValue(const K& key);
 		bool isEmpty() const;
-		void print() const;
+		void print();
 };
 
 // === PRIVATE INTERFACE ===
@@ -156,32 +171,6 @@ class avltree
 template<class K, class V>
 avltree<K, V>::Node::Node(const K& key, const V& value) :
 	_key(key), _value(value), _left(nullptr), _right(nullptr) {}
-
-template<class K,class V>
-int avltree<K, V>::Node::height() const
-{
-	if (_left == nullptr && _right == nullptr)
-		return 0;			
-	else if (_left == nullptr)
-		return _right -> height();
-	else if (_right == nullptr)
-		return _left -> height();
-	else
-		return max(_left -> height(), _right -> height()) + 1;
-}
-
-template<class K, class V>
-int avltree<K, V>::Node::eqFactor() const
-{
-	return _right -> height() - _left -> height();	
-}
-
-template<class K, class V>
-bool avltree<K, V>::Node::isLeaf() const
-{
-	return _left == nullptr && _right == nullptr;
-}
-
 
 template<class K, class V>
 void avltree<K, V>::rotateRight(Node*& rootSubTree)
@@ -251,7 +240,7 @@ void avltree<K, V>::empty(Node*& node)
 }
 
 template<class K, class V>
-void avltree<K, V>::print(const Node*& node) const
+void avltree<K, V>::print( Node*& node) 
 {
 	if (node -> isLeaf())
 		cout << node -> _value << endl;
@@ -283,7 +272,7 @@ void avltree<K, V>::insert(const K& key, const V& value)
 }
 
 template<class K, class V>
-void avltree<K, V>::print() const
+void avltree<K, V>::print() 
 {
 	print(_root);
 }
