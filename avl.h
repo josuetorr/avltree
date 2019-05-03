@@ -10,7 +10,7 @@
  */
 
 #ifndef _AVL_H_
-#define _AVL_H
+#define _AVL_H_
 
 template<class K, class V>
 class avltree
@@ -21,8 +21,8 @@ class avltree
 			Node(const K& key, const V& value);
 			K _key;
 			V _value;
-			Node*& _left;
-			Node*& _right;	
+			Node* _left;
+			Node* _right;	
 
 			int height() const;
 			int eqFactor() const;
@@ -51,7 +51,7 @@ class avltree
 		bool isEmpty() const;
 		bool contains(const K& key) const;
 		V& getValue(const K& key) const;
-		void print() const;
+		void print();
 };
 
 #include "avl.hpp"
