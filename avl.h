@@ -31,7 +31,7 @@ class avltree
 
 		/* This kind of implementation of the height and eqfactor
 		 * might not be the best. If the strucutre gets huge, the 
-		 * function stack call might run out of space.*/
+		 * function stack call might run out of space*/
 		int height(Node*& node) const;
 		int eqFactor(Node*& node) const;
 
@@ -43,6 +43,7 @@ class avltree
 		void empty(Node*& node);
 		bool contains(Node*& node, const K& key) const;
 		void copy(const avltree& a);
+		V& getValue(Node*& node, const K& key) const;
 		void print(Node*& node) const;
 
 	public:
@@ -53,8 +54,8 @@ class avltree
 		void insert(const K& key, const V& value);
 		void remove(const K& key);
 		bool isEmpty() const;
-		bool contains(const K& key) const;
-		V& getValue(const K& key) const;
+		bool contains(const K& key);
+		V& getValue(const K& key);
 		void print();
 };
 

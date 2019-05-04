@@ -96,10 +96,31 @@ void avltree<K, V>::empty(Node*& node)
 }
 
 template<class K, class V>
+bool avltree<K, V>::contains(Node*& node, const K& key) const
+{
+	if (!node)
+		return false;
+	else if (key == node -> _key)
+		return true;
+	else if (key > node -> _key)
+		return contains(node -> _right, key);
+	else 
+		return contains(node -> _left, key);	
+}
+
+template<class K, class V>
+V& avltree<K, V>::getValue(Node*& node, const K& key) const
+{
+	// replace this function with the operatot []
+}
+
+template<class K, class V>
 void avltree<K, V>::print(Node*& node) const
 {
 	if (node -> _left)
 		print(node -> _left);
+	if (node == _root)
+		cout << "(ROOT) ";
 	cout << "key: " 
 		 << node -> _key 
 		 << ", value: "
@@ -131,6 +152,24 @@ template<class K, class V>
 void avltree<K, V>::insert(const K& key, const V& value)
 {
 	insert(_root, key, value);
+}
+
+template<class K, class V>
+bool avltree<K, V>::isEmpty() const
+{
+	return !_root;
+}
+
+template <class K, class V>
+bool avltree<K, V>::contains (const K& key) 
+{
+	return contains(_root, key);
+}
+
+template<class K, class V>
+V& avltree<K, V>::getValue(const K& key)
+{
+	return getValue(_root, key);
 }
 
 template<class K, class V>
