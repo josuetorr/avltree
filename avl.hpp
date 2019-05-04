@@ -15,22 +15,22 @@ template<class K, class V>
 avltree<K, V>::Node::Node(const K& key, const V& value) :
 	_key(key), _value(value), _left(NULL), _right(NULL) {}
 
+// === PRIVATE FUNCTIONS ===
+
 template<class K, class V>
-int avltree<K, V>::Node::height() const
+int avltree<K, V>::height(Node*& node) const
 {
-	if (!this)
+	if (!node)
 		return -1;
 
-	return max(_left -> height(), _right -> height()) + 1;
+	return max(height(node -> _left), height(node -> _right)) + 1;
 }
 
 template<class K, class V>
-int avltree<K, V>::Node::eqFactor() const
+int avltree<K, V>::eqFactor(Node*& node) const
 {
-	return this -> _right -> height() - this -> _left -> height();
+	return height(node -> _right) - height(node -> _left);
 }
-
-// === PRIVATE FUNCTIONS ===
 
 template <class K, class V>
 void avltree<K, V>::rotateRight(Node*& subTreeRoot)
@@ -53,7 +53,19 @@ void avltree<K, V>::rotateLeft(Node*& subTreeRoot)
 template<class K, class V>
 void avltree<K, V>::rebalance(Node*& node)
 {
-	// I'm here
+	// left side
+	if (eqFactor(node) < -1)
+	{
+		if (eqFactor(node -> _left) > 0)
+			rotateLeft(node -> _left);
+		rotateRight(node);
+	}
+	else if (eqFactor(node) > 1)
+	{
+		if (eqFactor(node -> _right) < 0)
+			rotateRight(node -> _right);
+		rotateLeft(node);
+	}
 }
 
 template<class K, class V>

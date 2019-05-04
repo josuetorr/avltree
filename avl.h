@@ -24,12 +24,16 @@ class avltree
 			Node* _left;
 			Node* _right;	
 
-			int height() const;
-			int eqFactor() const;
 		};
 
 
 		Node* _root;
+
+		/* This kind of implementation of the height and eqfactor
+		 * might not be the best. If the strucutre gets huge, the 
+		 * function stack call might run out of space.*/
+		int height(Node*& node) const;
+		int eqFactor(Node*& node) const;
 
 		void rotateRight(Node*& subTreeRoot);
 		void rotateLeft(Node*& subTreeRoot);

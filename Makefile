@@ -4,7 +4,7 @@ cc=g++
 flags=-Wall -pedantic -std=c++11 -g
 src=main.cpp
 obj=main.o
-header=avl.h
+header=avl.h avl.hpp
 exe=avl.out
 
 .PHONY: default clean test
@@ -18,6 +18,6 @@ main.o: main.cpp $(header)
 	@$(cc) -c main.cpp $(flags)
 
 test:
-
+ 
 clean:
 	@rm -rf $(exe) $(obj)
